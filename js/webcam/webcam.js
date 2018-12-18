@@ -3,8 +3,10 @@ var resultShowed = false;
 
 function initWebcam() {
 	jQuery("#btnShowResult").hide();
-resultShowed = false;
-jQuery("#webcam").empty();
+	resultShowed = false;
+	jQuery("#webcam").empty();
+	jQuery("#initWeb").text("Procesando...");
+	jQuery("#initWeb").removeAttr("onclick");
 jQuery("#webcam").webcam({
 
 	width: 320,
@@ -51,6 +53,8 @@ jQuery("#webcam").webcam({
         var currentDate = new Date();        
         if (!resultShowed && (currentDate - initialDate) > 10000) {
 			resultShowed = true;
+			jQuery("#initWeb").text("Iniciar");
+			jQuery("#initWeb").attr("onclick", "initWebcam();");
 			jQuery("#btnShowResult").show();
 		}
     }, 1000);
